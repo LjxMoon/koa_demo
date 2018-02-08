@@ -2,7 +2,7 @@
  * @Author: DrMoon
  * @Date: 2018-02-08 14:21:12
  * @Last Modified by: DrMoon
- * @Last Modified time: 2018-02-08 18:06:43
+ * @Last Modified time: 2018-02-08 23:26:38
  */
 
 const router = require('koa-router')()
@@ -23,6 +23,7 @@ const signIn = async (ctx, next) => {
     }
   }
 }
+
 router.post('./signIn', signIn)
 
 module.exports = router

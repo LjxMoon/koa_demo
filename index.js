@@ -2,12 +2,12 @@
  * @Author: DrMoon
  * @Date: 2018-02-08 14:09:54
  * @Last Modified by: DrMoon
- * @Last Modified time: 2018-02-08 18:06:49
+ * @Last Modified time: 2018-02-09 00:09:46
  */
 
 const Koa = require('koa')
 const bodyParse = require('koa-bodyparser')
-const router = require('koa-router')()
+const router = require('koa-router')
 const moment = require('moment')()
 const app = new Koa()
 const log4js = require('koa-log4')
