@@ -15,10 +15,19 @@
   "license": "ISC",
   "dependencies": {
     "koa": "^2.4.1",
-    "log4js": "^2.5.2",
-    "moment": "^2.20.1"
+    "koa-router": "^7.4.0",
+    "koa-bodyparser": "^4.2.0",
+    "jsonwebtoken": "^8.1.1",
+    "koa-log4": "2.2.1",
+    "moment": "^2.20.1",
+    "mysql2": "^1.5.2"
   },
   "devDependencies": {
-    "eslint": "^4.17.0"
+    "eslint": "^4.17.0",
+    "eslint-config-standard": "^11.0.0-beta.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^6.0.0",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1"
   }
 }
