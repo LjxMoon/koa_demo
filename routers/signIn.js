@@ -2,15 +2,16 @@
  * @Author: DrMoon
  * @Date: 2018-02-08 14:21:12
  * @Last Modified by: DrMoon
- * @Last Modified time: 2018-02-08 23:26:38
+ * @Last Modified time: 2018-02-09 10:28:27
  */
 
-const router = require('koa-router')()
+// const router = require('koa-router')()
 
 const signIn = async (ctx, next) => {
-  await next()
+  // await next()
   const userName = ctx.request.body.userName || ''
   const password = ctx.request.body.password || ''
+  ctx.response.type = 'application/json;charset=UTF-8'
   if (userName === 'DrMoon' && password === '123456') {
     ctx.response.body = {
       flag: 'true',
@@ -24,6 +25,8 @@ const signIn = async (ctx, next) => {
   }
 }
 
-router.post('./signIn', signIn)
+// router.post('./signIn', signIn)
 
-module.exports = router
+module.exports = {
+  'POST /signIn': signIn
+}

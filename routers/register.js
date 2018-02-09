@@ -2,15 +2,16 @@
  * @Author: DrMoon
  * @Date: 2018-02-08 17:54:03
  * @Last Modified by: DrMoon
- * @Last Modified time: 2018-02-08 23:29:05
+ * @Last Modified time: 2018-02-09 10:28:55
  */
 
-const router = require('koa-router')()
+// const router = require('koa-router')()
 
 const register = async (ctx, next) => {
   await next()
   const userName = ctx.request.body.userName || ''
-  if (userName == 'DrMoon') {
+  ctx.response.type = 'application/json;charset=UTF-8'
+  if (userName === 'DrMoon') {
     ctx.response.body = {
       flag: 'false',
       msg: '该帐号已被注册'
@@ -23,6 +24,9 @@ const register = async (ctx, next) => {
   }
 }
 
-router.post('./register', register)
+// router.post('./register', register)
 
-module.exports = router
+// module.exports = router
+module.exports = {
+  'POST /register': register
+}
