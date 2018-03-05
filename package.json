@@ -14,14 +14,16 @@
   "author": "DrMoon",
   "license": "ISC",
   "dependencies": {
+    "jsonwebtoken": "^8.1.1",
     "koa": "^2.4.1",
-    "koa-router": "^7.4.0",
     "koa-bodyparser": "^4.2.0",
     "koa-cors": "^0.0.16",
-    "jsonwebtoken": "^8.1.1",
     "koa-log4": "2.2.1",
+    "koa-router": "^7.4.0",
     "moment": "^2.20.1",
-    "mysql2": "^1.5.2"
+    "mysql": "^2.15.0",
+    "promise-mysql": "^3.2.1",
+    "uuid": "^3.2.1"
   },
   "devDependencies": {
     "eslint": "^4.17.0",
