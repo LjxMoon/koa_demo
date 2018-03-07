@@ -2,21 +2,20 @@
  * @Author: DrMoon
  * @Date: 2018-02-08 14:09:54
  * @Last Modified by: DrMoon
- * @Last Modified time: 2018-02-09 10:37:56
+ * @Last Modified time: 2018-03-07 17:36:42
  */
 
 const Koa = require('koa')
-// const router = require('koa-router')
+const app = new Koa()
 const bodyParse = require('koa-bodyparser')
 const cors = require('koa-cors')
 const log4js = require('koa-log4')
 const moment = require('moment')()
-const app = new Koa()
-const router = require('./router')
+const router = require('koa-router')()
+const apiRouter = require('./routers')
 
 app.use(bodyParse())
 app.use(cors())
-app.use(router())
 
 const logger = log4js.getLogger('index')
 logger.info('Starting with ' + moment.format('YYYY-MM-DD HH:mm:ss') + '......')
@@ -28,7 +27,6 @@ const main = async (ctx, next) => {
 }
 
 app.use(main)
-// app.use(require('./routers/signIn.js').routes())
-// app.use(require('./routers/signOut.js').routes())
+app.use(apiRouter.routes(), router.allowedMethods())
 
 app.listen(3000)
