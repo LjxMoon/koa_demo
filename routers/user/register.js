@@ -2,16 +2,14 @@
  * @Author: DrMoon
  * @Date: 2018-02-08 17:54:03
  * @Last Modified by: DrMoon
- * @Last Modified time: 2018-03-07 17:37:16
+ * @Last Modified time: 2018-03-08 19:42:53
  */
 
 const router = require('koa-router')()
-const pool = require('../config/database')
-const uuidv1 = require('uuid/v1')
+const pool = require('../../config/database')
+const uuid = require('uuid/v1')
 
 const register = async (ctx, next) => {
-  await next()
-  ctx.response.type = 'application/json;charset=UTF-8'
   let jsonData = {
     flag: '',
     msg: ''
@@ -28,8 +26,8 @@ const register = async (ctx, next) => {
       msg: '该帐号已被注册！'
     }
   } else {
-    let uuid = uuidv1()
-    let query = 'INSERT INTO people (userId, userName, password, sex, phone) VALUES ("' + uuid + '","' + userName + '","' + password + '","' + sex + '","' + phone + '")'
+    let userId = uuid()
+    let query = 'INSERT INTO people (userId, userName, password, sex, phone) VALUES ("' + userId + '","' + userName + '","' + password + '","' + sex + '","' + phone + '")'
     let result = await pool.query(query)
     if (result) {
       jsonData = {
@@ -43,9 +41,10 @@ const register = async (ctx, next) => {
       }
     }
   }
+  ctx.response.type = 'application/json;charset=UTF-8'
   ctx.body = jsonData
 }
 
-router.post('./register', register)
+router.post('/register', register)
 
 module.exports = router

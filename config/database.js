@@ -8,10 +8,4 @@ const pool = mysql.createPool({
   connectionLimit: 10
 })
 
-// const sqlConnection = (query, values) => {
-//   pool.query(query).then((rows) => {
-//     values = rows
-//   })
-// }
-
 module.exports = pool
