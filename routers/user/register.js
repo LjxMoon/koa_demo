@@ -2,7 +2,7 @@
  * @Author: DrMoon
  * @Date: 2018-02-08 17:54:03
  * @Last Modified by: DrMoon
- * @Last Modified time: 2018-03-08 19:42:53
+ * @Last Modified time: 2018-03-09 10:38:07
  */
 
 const router = require('koa-router')()
@@ -27,7 +27,7 @@ const register = async (ctx, next) => {
     }
   } else {
     let userId = uuid()
-    let query = 'INSERT INTO people (userId, userName, password, sex, phone) VALUES ("' + userId + '","' + userName + '","' + password + '","' + sex + '","' + phone + '")'
+    let query = 'INSERT INTO people (userId, userName, password, sex, phone) VALUES ("' + userId + '","' + userName + '","' + password + '","' + sex + '","' + phone + '");'
     let result = await pool.query(query)
     if (result) {
       jsonData = {

@@ -2,7 +2,7 @@
  * @Author: DrMoon
  * @Date: 2018-03-08 19:39:21
  * @Last Modified by: DrMoon
- * @Last Modified time: 2018-03-08 20:03:09
+ * @Last Modified time: 2018-03-09 11:21:07
  */
 
 const router = require('koa-router')()
@@ -13,30 +13,26 @@ const deleteArticle = async (ctx, next) => {
   const token = ctx.request.header.token || ''
   const articleId = ctx.request.body.articleId || ''
   let userId = ''
-  let [jwtErr, jwtData] = jwt.verify(token)
-  if (jwtErr) {
-    console.log(jwtErr)
-  } else {
+  try {
+    let jwtData = await jwt.verify(token)
     userId = jwtData.data[0].userId
+  } catch (err) {
+    console.log(err)
   }
   let jsonData = {
     flag: '',
     msg: ''
   }
   if (userId) {
-    let query = 'DELETE * FROM article WHERE `articleId`="' + articleId + '";'
-    let result = false
+    let query = 'DELETE FROM article WHERE `articleId`="' + articleId + '";'
     try {
-      result = await pool.query(query)
-    } catch (err) {
-      console.log(err)
-    }
-    if (result) {
+      await pool.query(query)
       jsonData = {
         flag: 'true',
-        msg: result
+        msg: '删除成功'
       }
-    } else {
+    } catch (err) {
+      console.log(err)
       jsonData = {
         flag: 'false',
         msg: '删除失败'

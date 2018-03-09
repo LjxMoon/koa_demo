@@ -2,7 +2,7 @@
  * @Author: DrMoon
  * @Date: 2018-02-08 14:21:12
  * @Last Modified by: DrMoon
- * @Last Modified time: 2018-03-08 19:42:40
+ * @Last Modified time: 2018-03-09 10:10:28
  */
 
 const router = require('koa-router')()
@@ -17,8 +17,17 @@ const signIn = async (ctx, next) => {
     msg: ''
   }
   let query = 'SELECT * FROM people WHERE `userName`="' + userName + '" AND `password`="' + password + '";'
-  let result = await pool.query(query)
-  let token = jwt.sign(result)
+  let result, token
+  try {
+    result = await pool.query(query)
+  } catch (err) {
+    console.log(err)
+  }
+  try {
+    token = await jwt.sign(result)
+  } catch (err) {
+    console.log(err)
+  }
   if (result.length) {
     jsonData = {
       flag: 'true',
