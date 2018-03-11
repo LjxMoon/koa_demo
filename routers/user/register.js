@@ -18,7 +18,7 @@ const register = async (ctx, next) => {
   const password = ctx.request.body.password || ''
   const sex = ctx.request.body.sex || ''
   const phone = ctx.request.body.phone || ''
-  let query = 'SELECT * FROM people WHERE `userName`="' + userName + '";'
+  let query = 'SELECT * FROM user WHERE `userName`="' + userName + '";'
   let result = await pool.query(query)
   if (result.length) {
     jsonData = {
@@ -27,7 +27,7 @@ const register = async (ctx, next) => {
     }
   } else {
     let userId = uuid()
-    let query = 'INSERT INTO people (userId, userName, password, sex, phone) VALUES ("' + userId + '","' + userName + '","' + password + '","' + sex + '","' + phone + '");'
+    let query = 'INSERT INTO user (userId, userName, password, sex, phone) VALUES ("' + userId + '","' + userName + '","' + password + '","' + sex + '","' + phone + '");'
     let result = await pool.query(query)
     if (result) {
       jsonData = {

@@ -2,7 +2,7 @@
  * @Author: DrMoon
  * @Date: 2018-02-08 14:21:12
  * @Last Modified by: DrMoon
- * @Last Modified time: 2018-03-09 10:10:28
+ * @Last Modified time: 2018-03-09 21:41:23
  */
 
 const router = require('koa-router')()
@@ -16,7 +16,7 @@ const signIn = async (ctx, next) => {
     flag: '',
     msg: ''
   }
-  let query = 'SELECT * FROM people WHERE `userName`="' + userName + '" AND `password`="' + password + '";'
+  let query = 'SELECT * FROM user WHERE `userName`="' + userName + '" AND `password`="' + password + '";'
   let result, token
   try {
     result = await pool.query(query)
